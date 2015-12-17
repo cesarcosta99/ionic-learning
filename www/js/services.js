@@ -4,7 +4,7 @@ angular.module('eventos.services', [])
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var eventos = [
+  var defEvents = [
   {
     id: 0,
     nome:"21º Congresso Brasileiro de Apicultura",
@@ -42,20 +42,34 @@ angular.module('eventos.services', [])
     local:"Every blood dawm Cinema :D"
   }];
 
+  var eventos = JSON.parse(localStorage.eventos || "[]");
+
   function getNovoId(){
-    return eventos[eventos.length-1].id + 1;
+    return eventos.length ? eventos[eventos.length-1].id + 1 : 0;
   }
 
   return {
+    defEvents: function() {
+      return defEvents;
+    },
     todos: function() {
       return eventos;
     },
     salvar: function(evento){
       evento.id = getNovoId();
-      eventos.push(evento);
+      eventos.push({
+        id: evento.id,
+        nome: evento.nome,
+        descricao: evento.descricao,
+        foto: evento.foto,
+        data: evento.data,
+        local: evento.local
+      });
+      localStorage.eventos = JSON.stringify(eventos);
     },
     deletar: function($index){
       eventos.splice($index, 1);
+      localStorage.eventos = JSON.stringify(eventos);
     },
     get: function(eventoId) {
       for (var i = 0; i < eventos.length; i++) {

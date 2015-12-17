@@ -1,15 +1,19 @@
 <ion-view view-title="Eventos">
-  <ion-header-bar align-title="right" class="bar-positive">
-  <div class="buttons">
-    <button class="button" ng-click="doSomething()">Left Button</button>
-  </div>
-  </ion-header-bar>
+  <ion-nav-buttons side="right">
+    <label class="item item-input">
+    <i class="ion-search placeholder-icon"></i>
+      <input type="search" placeholder="Buscar" size="5" ng-model="$parent.busca">
+    </label>
+  </ion-nav-buttons>
   <ion-content>
   	<ion-list>
-  	  <ion-item ng-repeat="evento in eventos" ui-sref="tab.eventosDetail({eventoId: evento.id})" can-swipe="true">
+  	  <ion-item ng-repeat="evento in eventos | filter:busca as results" ui-sref="tab.eventosDetail({eventoId: evento.id})" can-swipe="true">
   		  <h2>{{ evento.nome }}</h2>
         <ion-option-button class="ion-minus-circled assertive-color" ng-click="deletar($index)"></ion-option-button>
   	  </ion-item>
+      <ion-item class="animate-repeat" ng-if="results.length == 0">
+        <strong>Nenhum resultado encontrado...</strong>
+      </ion-item>
   	</ion-list>
   </ion-content>
 </ion-view>

@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('eventos', ['ionic', 'eventos.controllers', 'eventos.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, EventosService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,9 @@ angular.module('eventos', ['ionic', 'eventos.controllers', 'eventos.services'])
       StatusBar.styleDefault();
     }
   });
+  if(!localStorage.eventos){
+    localStorage.eventos = JSON.stringify(EventosService.defEvents());
+  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
