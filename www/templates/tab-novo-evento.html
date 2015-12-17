@@ -1,0 +1,22 @@
+<ion-view view-title="Novo Evento">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Nome" ng-model="evento.nome" />
+      </label>
+
+      <label class="item item-input">
+        <textarea placeholder="Descrição" ng-model="evento.descricao"></textarea>
+      </label>
+
+      <label class="item item-input">
+        <input type="text" placeholder="Foto" ng-model="evento.foto" />
+      </label>
+
+      <label class="item item-input">
+        <input type="text" placeholder="Data" ng-model="evento.data" />
+      </label>
+    </div>
+    <button class="button button-block" ng-click="salvar(evento)">Salvar</button>
+  </ion-content>
+</ion-view>

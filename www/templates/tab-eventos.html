@@ -1,0 +1,15 @@
+<ion-view view-title="Eventos">
+  <ion-header-bar align-title="right" class="bar-positive">
+  <div class="buttons">
+    <button class="button" ng-click="doSomething()">Left Button</button>
+  </div>
+  </ion-header-bar>
+  <ion-content>
+  	<ion-list>
+  	  <ion-item ng-repeat="evento in eventos" ui-sref="tab.eventosDetail({eventoId: evento.id})" can-swipe="true">
+  		  <h2>{{ evento.nome }}</h2>
+        <ion-option-button class="ion-minus-circled assertive-color" ng-click="deletar($index)"></ion-option-button>
+  	  </ion-item>
+  	</ion-list>
+  </ion-content>
+</ion-view>
